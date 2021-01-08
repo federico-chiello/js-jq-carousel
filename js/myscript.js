@@ -9,6 +9,10 @@ $(document).ready(function(){
     // Utilizziamo una variabile per indicare la condizione iniziale dell'active, il quale si dovrà spostare nelle immagini successive al click.
     var immagini = $('.images img.active');
 
+    // Dobbiamo prima togliere la classe 'active' dall'immagine iniziale e, dopo, aggiungere 'active' all'immagine successiva.     
+    immagini.removeClass('active');
+    immagini.next().addClass('active');
+
 
 
   });

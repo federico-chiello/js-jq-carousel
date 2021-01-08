@@ -6,6 +6,7 @@
 $(document).ready(function(){
   // Creiamo un evento al click. Quando clicchiamo la freccia di destra devono scorrere le immagini.
   $('.next').click(nextArrow);
+  $('.prev').click(prevArrow);
 
 });
 
@@ -35,5 +36,29 @@ function nextArrow(){
   // if permette di far ritornare la classe 'active' dall'ultimo pallino (last) al prima pallino (first).
   if (pallinoBlu.hasClass('last')) {
     $('.nav i.first').addClass('active');
+  }
+}
+
+// Funzione riferita alla freccia di sinistra.
+function prevArrow() {
+
+  var immagini = $('.images img.active');
+
+  immagini.removeClass('active');
+  immagini.prev().addClass('active');
+
+  if (immagini.hasClass('first')) {
+    $('.images img.first').removeClass('active');
+    $('.images img.last').addClass('active');
+  }
+
+  var pallinoBlu = $('.nav i.active');
+
+  pallinoBlu.removeClass('active');
+  pallinoBlu.prev().addClass('active');
+
+  if (pallinoBlu.hasClass('first')) {
+    $('.nav i.last').removeClass('active');
+    $('.nav i.last').addClass('active');
   }
 }

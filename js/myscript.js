@@ -4,35 +4,39 @@
 
 
 $(document).ready(function(){
-  // Creiamo un evento al click. Quando clicchiamo la freccia di destra devono scorrere le immagini.
+  // Creiamo un evento al click: Quando clicchiamo le frecce devono scorrere le immagini.
   $('.next').click(nextArrow);
   $('.prev').click(prevArrow);
-
+  // Quando clicchiamo le palline devono scorrere le immagini.
+  $('.nav i').click(ball);
 });
 
-
+// Funzione riferita alle palline del nav.
+function ball(){
+  // Creiamo una variabile che indica la condizione inziale della pallina con l'active.
+  var pallinoActive = $('.nav i.active');
+  // Togliamo l'active dal pallino in cui si trova inizialmente.
+  pallinoActive.removeClass('active');
+  // Il selettore this consente di aggiungere l'active quando noi clicchiamo su un qualsiasi pallino.
+  $(this).addClass('active');
+}
 
 // Funzione riferita alla freccia di destra.
 function nextArrow(){
   // Utilizziamo una variabile per indicare la condizione iniziale dell'active, il quale si dovrà spostare nelle immagini successive al click.
   var immagini = $('.images img.active');
-
   // Dobbiamo prima togliere la classe 'active' dall'immagine iniziale e, dopo, aggiungere 'active' all'immagine successiva.
   immagini.removeClass('active');
   immagini.next().addClass('active');
-
   // La condizione if permette di far ritornare la classe 'active' dall'ultima immagine (last) alla prima immagine (first).
   if (immagini.hasClass('last')) {
     $('.images img.first').addClass('active');
   }
-
   // Adesso dobbiamo cambiare il colore dei pallini della navbar che devono diventare blu quando si clicca. Utilizziamo una variabile per indicare la condizione iniziale dell'active.
   var pallinoBlu = $('.nav i.active');
-
   // La classe 'active' passa dal primo pallino (first) al pallino successivo.
   pallinoBlu.removeClass('active');
   pallinoBlu.next().addClass('active');
-
   // if permette di far ritornare la classe 'active' dall'ultimo pallino (last) al prima pallino (first).
   if (pallinoBlu.hasClass('last')) {
     $('.nav i.first').addClass('active');
@@ -41,9 +45,7 @@ function nextArrow(){
 
 // Funzione riferita alla freccia di sinistra.
 function prevArrow() {
-
   var immagini = $('.images img.active');
-
   immagini.removeClass('active');
   immagini.prev().addClass('active');
 
@@ -53,12 +55,11 @@ function prevArrow() {
   }
 
   var pallinoBlu = $('.nav i.active');
-
   pallinoBlu.removeClass('active');
   pallinoBlu.prev().addClass('active');
 
   if (pallinoBlu.hasClass('first')) {
-    $('.nav i.last').removeClass('active');
+    $('.nav i.first').removeClass('active');
     $('.nav i.last').addClass('active');
   }
 }

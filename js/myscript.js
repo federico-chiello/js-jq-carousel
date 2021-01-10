@@ -14,11 +14,15 @@ $(document).ready(function(){
 // Funzione riferita alle palline del nav.
 function ball(){
   // Creiamo una variabile che indica la condizione inziale della pallina con l'active.
-  var pallinoActive = $('.nav i.active');
+  var pallinoActive = $('.active');
   // Togliamo l'active dal pallino in cui si trova inizialmente.
   pallinoActive.removeClass('active');
   // Il selettore this consente di aggiungere l'active quando noi clicchiamo su un qualsiasi pallino.
   $(this).addClass('active');
+  // Adesso si deve cambiare anche l'immagine quando clicchiamo il pallino. Creiamo una variabile che indica l'indice.
+  var imagePosition = $(this).index();
+  // Dopo che clicchiamo il pallino, diciamo che l'img deve aggiungere l'active alla stessa posizione di quella del pallino.
+  $('img').eq(imagePosition).addClass('active');
 }
 
 // Funzione riferita alla freccia di destra.

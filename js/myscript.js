@@ -1,6 +1,6 @@
 // Istruzione:
 // Lo slider prevederà due frecce che permettono di scorrere tra le immagini dello slider, sia con la freccia di destra che con quella di sinistra.
-// In oltre, per scorrere le immagini, attivare anche l’uso delle frecce sinistra e destra della tastiera.
+// Bonus: In oltre, per scorrere le immagini, attivare anche l’uso delle frecce sinistra e destra della tastiera.
 
 
 $(document).ready(function(){
@@ -9,9 +9,24 @@ $(document).ready(function(){
   $('.prev').click(prevArrow);
   // Quando clicchiamo le palline devono scorrere le immagini.
   $('.nav i').click(ball);
+  // +++++ Bonus +++++
+  // Freccia di destra della tastiera.
+  $('body').keydown(function(e){
+    if (e.keyCode === 39) {
+      nextArrow();
+    }
+  });
+  // Freccia di sinistra della tastiera.
+  $('body').keydown(function(e){
+    if (e.keyCode === 37) {
+      prevArrow();
+    }
+  });
 });
 
-// Funzione riferita alle palline del nav.
+
+
+// ++++++ Funzione riferita alle palline del nav.
 function ball(){
   // Creiamo una variabile che indica la condizione inziale della pallina con l'active.
   var pallinoActive = $('.active');
@@ -25,7 +40,7 @@ function ball(){
   $('img').eq(imagePosition).addClass('active');
 }
 
-// Funzione riferita alla freccia di destra.
+// +++++ Funzione riferita alla freccia di destra.
 function nextArrow(){
   // Utilizziamo una variabile per indicare la condizione iniziale dell'active, il quale si dovrà spostare nelle immagini successive al click.
   var immagini = $('.images img.active');
@@ -47,23 +62,18 @@ function nextArrow(){
   }
 }
 
-// Funzione riferita alla freccia di sinistra.
+// +++++ Funzione riferita alla freccia di sinistra.
 function prevArrow() {
   var immagini = $('.images img.active');
   immagini.removeClass('active');
   immagini.prev().addClass('active');
-
   if (immagini.hasClass('first')) {
-    $('.images img.first').removeClass('active');
     $('.images img.last').addClass('active');
   }
-
   var pallinoBlu = $('.nav i.active');
   pallinoBlu.removeClass('active');
   pallinoBlu.prev().addClass('active');
-
   if (pallinoBlu.hasClass('first')) {
-    $('.nav i.first').removeClass('active');
     $('.nav i.last').addClass('active');
   }
 }
